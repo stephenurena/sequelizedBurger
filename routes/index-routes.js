@@ -7,7 +7,7 @@
 // =============================================================
 module.exports = function(app) {
 
-  // index route loads index.hbs
+  // index route loads index.hbs, redirects path to /burgers
   app.get("/", function(req, res) {
     res.redirect("/burgers");
   });

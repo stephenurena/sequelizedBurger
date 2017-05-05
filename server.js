@@ -14,22 +14,24 @@ app.use(express.static(__dirname + "/public"));
 //------updated for sequelize---------
 // Requiring our models for syncing
 var db = require("./models");
+//------------------------------------
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({
   extended: false
 }));
+
 // override with POST having ?_method=DELETE
 app.use(methodOverride("_method"));
 var exphbs = require("express-handlebars");
 
-//handlebars
+//handlebars engine using the default layout main from views folder
 app.engine("handlebars", exphbs({
   defaultLayout: "main"
 }));
 app.set("view engine", "handlebars");
 
-//---------------previous orm routes------------------------
+//---------previous orm routes, not for sequelize-----------
 // var routes = require("./controllers/burgers_controller");
 
 // app.use("/", routes);
@@ -38,9 +40,10 @@ app.set("view engine", "handlebars");
 //----------------------------------------------------------
 
 //------updated for sequelize---------
-// Routes =============================================================
+//********Routes for sequelize********
 require("./routes/index-routes.js")(app);
 require("./routes/burger-ctrl.js")(app);
+//------------------------------------
 
 //------updated for sequelize---------
 // Syncing our sequelize models and then starting our express app

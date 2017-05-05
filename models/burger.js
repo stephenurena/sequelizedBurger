@@ -1,4 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
+  
+  //db "Constructor" for schema, table Burger(s) created with columns...
   var Burger = sequelize.define("Burger", {
     id: {
       type: DataTypes.INTEGER,

@@ -1,7 +1,8 @@
 var db = require("../models");
+//controller(MVC) routes, CRUD for burger Request methods...
 
 module.exports = function(app) {
-
+	//gets/displays current stored burgers user wants to eat
 	app.get("/burgers", function(req,res){
 		db.Burger.findAll({})
 		.then(function(dbBurger) {
@@ -11,7 +12,7 @@ module.exports = function(app) {
 			res.render('index', hbsObj);
 		});
 	});
-
+	//post/adds a burger a user wants to eat to display in the upper left quadrant
 	app.post("/burgers/create", function(req, res) {
 
 		db.Burger.create({
@@ -21,20 +22,23 @@ module.exports = function(app) {
 			 res.redirect("/");
 		});
 	});
-
+	//when a user gets hungry/clicks on "Devour it!", will update/display burger to be entered...
+	//into the upper right quadrant of devoured burgers
 	app.put("/burgers/:id", function(req, res) {
 
-		var burgerID = req.params.id;
-
-		db.Burger.update(
-			{
+		var nowDevoured = {
 			devoured: true
-			}, { 
+		}
+
+		var burgerID = req.body.id;
+
+		db.Burger.update(nowDevoured, { 
 			where: {
 	     		 id: burgerID
 	    		}
 	    	})
 			.then(function(dbBurger) {
+				// console.log(dbBurger)
 				res.redirect("/");
 			});
 	});
