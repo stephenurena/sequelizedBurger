@@ -26,7 +26,8 @@ module.exports = function(sequelize, DataTypes) {
     date: {
       type: DataTypes.DATE
     }}, {
-    timestamps: false
+    timestamps: false,
+    freezeTableName: true,
   });
   return Burger;
 };

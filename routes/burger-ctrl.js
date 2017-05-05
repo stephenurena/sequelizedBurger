@@ -26,13 +26,13 @@ module.exports = function(app) {
 	//into the upper right quadrant of devoured burgers
 	app.put("/burgers/:id", function(req, res) {
 
-		var nowDevoured = {
-			devoured: true
-		}
+		// var nowDevoured = {
+		// 	devoured: true
+		// }
 
-		var burgerID = req.body.id;
+		var burgerID = req.params.id;
 
-		db.Burger.update(nowDevoured, { 
+		db.Burger.update({devoured: true}, { 
 			where: {
 	     		 id: burgerID
 	    		}
